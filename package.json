@@ -1,0 +1,11 @@
+{
+    "name": "lyricsGame",
+    "version": "0.0.1",
+    "dependencies": {
+        "cheerio": "0.12.3",
+        "underscore": "1.4.4",
+        "mongodb": "*",
+        "request": "2.27.0",
+        "async": "0.2.5"
+    }
+}
