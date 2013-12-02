@@ -14,12 +14,10 @@ exports.index = function(req, res) {
              {_id: 1}
             }
         ], function(err, result) {
-            console.log(result);
             var artists = [];
             result.forEach (function(elem, index, array) {
                 artists.push(elem._id);
             });
-            console.log(artists);
             db.close;
             res.render("index", {artists: artists});
         });

@@ -6,7 +6,7 @@
 var express = require('express');
 var routes = require('./routes');
 var runGame = require('./routes/runGame');
-// var user = require('./routes/user');
+var checkAnswer = require('./routes/checkAnswer');
 var http = require('http');
 var path = require('path');
 var cons = require('consolidate');
@@ -34,21 +34,7 @@ if ('development' == app.get('env')) {
 var answers={};
 app.get('/', routes.index);
 app.post('/getArtist', runGame.runGame);
-// antonio's CODE
-// app.post('/getArtist', function(req, res){
-// //going to db and create question and answer
-
-// var questionId="dasd"
-// var answer = "dasd"
-// answers[questionId] = answer
-// });
-
-// app.post('/checAnswer', function(req, res){
-//   var questionId = req.
-//  var answer = req.
-
-//  if anwers[questions] == anwer
-// })
+app.post('/checkAnswer', checkAnswer.checkAnswer);
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));

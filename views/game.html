@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
 </head>
 <body>
 <p> {{ fourLines[0] }}
 <p> {{ fourLines[1] }}
 <p> {{ fourLines[2] }}
 <p> {{ fourLines[3] }} </p>
-<form>
-      <input type="radio" name="songName" value="a">{{songNames[0]}}<br>
-      <input type="radio" name="songName" value="b">{{songNames[1]}}<br>
-      <input type="radio" name="songName" value="c">{{songNames[2]}}<br>
-      <input type="radio" name="songName" value="d">{{songNames[3]}}<br>
+<form name="input" action="/checkAnswer" method="post">
+<input type="radio" name="songName" value={{sha1}}0>{{songNames[0]}}<br><br>
+  <input type="radio" name="songName" value={{sha1}}1>{{songNames[1]}}<br><br>
+  <input type="radio" name="songName" value={{sha1}}2>{{songNames[2]}}<br><br>
+      <input type="radio" name="songName" value={{sha1}}3>{{songNames[3]}}<br><br>
+      <input type="submit" value="Submit">
     </form>
   </body>
 </html>
+<!-- Make the form return something. Get answer from server. Save to DB -->
