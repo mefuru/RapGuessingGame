@@ -8,7 +8,7 @@ var MongoClient = require("mongodb").MongoClient,
  _ = require("underscore");
 
 var homeURL = "http://rapgenius.com";
-var rapperName = process.argv[2] || "Skinnyman";
+/* var rapperName = process.argv[2] || "Skinnyman"; removed for module.exports */
 // Process artist page
 var getAlbumsForArtist = function(rapperName, callback) {
     geniusQuery.albumURLs(rapperName, function(error, albumURLs) {
@@ -108,30 +108,34 @@ var songDataToTrack = function(songData) {
     return track; // return newly created track object
 };
 
-// refactor save code
-getAlbumsForArtist(rapperName, function(error, albums) {
-    // move DB onto mongolabs
-    MongoClient.connect('mongodb://localhost:27017/rapGeniusData', function(err, db) {
-        if(err) throw err;
-        getSongsForAlbums(albums, function(error, songsData) {
-            var tracks = _.map(_.flatten(songsData), songDataToTrack);
-            console.log(tracks.length);
-            var numCallbacks = 0;
-            _.map(tracks, function(track) {
-                var query = {artist: track.artist, name: track.name};
-                var operator = track;
-                var options = {upsert: true};
-                db.collection("songs").update(query, operator, options, function (err, upserted) {
-                    if(err) throw err;
-                    console.dir("Storing data for track: " + track.name);
-                    numCallbacks++;
-                    if (numCallbacks == tracks.length) {
-                        console.log("Completed");
-                        db.close;
-                        process.exit(0);
-                    }
+var getData = function(rapperName) {
+    // refactor save code
+    getAlbumsForArtist(rapperName, function(error, albums) {
+        // move DB onto mongolabs
+        MongoClient.connect('mongodb://localhost:27017/rapGeniusData', function(err, db) {
+            if(err) throw err;
+            getSongsForAlbums(albums, function(error, songsData) {
+                var tracks = _.map(_.flatten(songsData), songDataToTrack);
+                console.log(tracks.length);
+                var numCallbacks = 0;
+                _.map(tracks, function(track) {
+                    var query = {artist: track.artist, name: track.name};
+                    var operator = track;
+                    var options = {upsert: true};
+                    db.collection("songs").update(query, operator, options, function (err, upserted) {
+                        if(err) throw err;
+                        console.dir("Storing data for track: " + track.name);
+                        numCallbacks++;
+                        if (numCallbacks == tracks.length) {
+                            console.log("Completed");
+                            db.close;
+                            process.exit(0);
+                        }
+                    });
                 });
             });
         });
     });
-});
+};
+
+module.exports = getData;
