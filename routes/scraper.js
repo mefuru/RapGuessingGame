@@ -108,7 +108,26 @@ var songDataToTrack = function(songData) {
     return track; // return newly created track object
 };
 
-var getData = function(rapperName) {
+var renderHomepage = function(songsCollection, res) {
+    songsCollection.aggregate([
+        {$group:
+         { _id: "$artist" }
+        },
+        {$sort:
+         {_id: 1}
+        }
+    ], function(err, result) {
+        var artists = [];
+        result.forEach (function(elem, index, array) {
+            artists.push(elem._id);
+        });
+        res.render("index", {artists: artists});
+    });
+
+
+};
+
+var getData = function(rapperName, res) {
     // refactor save code
     getAlbumsForArtist(rapperName, function(error, albums) {
         // move DB onto mongolabs
@@ -122,14 +141,14 @@ var getData = function(rapperName) {
                     var query = {artist: track.artist, name: track.name};
                     var operator = track;
                     var options = {upsert: true};
-                    db.collection("songs").update(query, operator, options, function (err, upserted) {
+                    var songsCollection = db.collection("songs");
+                    songsCollection.update(query, operator, options, function (err, upserted) {
                         if(err) throw err;
                         console.dir("Storing data for track: " + track.name);
                         numCallbacks++;
                         if (numCallbacks == tracks.length) {
-                            console.log("Completed");
-                            db.close;
-                            // have to render homepage
+                            console.log("Songs successfully scraped, now rendering homepage");
+                            renderHomepage(songsCollection, res);
                         }
                     });
                 });

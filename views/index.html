@@ -2,29 +2,36 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/bootstrap.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="js/bootstrap.js"></script>
-</head>
-<body>
-    <h1>Welcome To A Rap Lyrics Guessing Game</h1>
-    <form action="/getArtist" method="post">
-      <label form="POST-name" type="text" name="Enter Artist!"></label>
-      <input id="POST-name" type="text" name="artist">
-      <input type="submit" value="Play!">
-    </form>
-    <br>
-    <ul class="lead">
-      {% for artist in artists %}
-      <li{% if loop.first %} class="first"{% endif %}>
-        {{ artist }}
-      </li>
-      {% endfor %}
-    </ul>
-    <h1>Add an artist</h1>
-<form action="/addArtist" method="post">
-      <label form="POST-name" type="text" name="Add an Artist!"></label>
-      <input id="POST-name" type="text" name="artist">
-      <input type="submit" value="Add artist!">
-    </form>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+  </head>
+  <body>
+    <div class="row">
+      <div class="col-xs-6 col-md-4"></div>
+      <div class="col-xs-6 col-md-4">
+        <h1>Welcome To A Rap Lyrics Guessing Game</h1>
+        <form action="/getArtist" method="post">
+          <label form="POST-name" type="text" name="Enter Artist!"></label>
+          <input id="POST-name" type="text" name="artist">
+          <input type="submit" value="Play!">
+        </form>
+        <br>
+        <ul class="lead">
+          {% for artist in artists %}
+          <li{% if loop.first %} class="first"{% endif %}>
+            {{ artist }}
+          </li>
+          {% endfor %}
+        </ul>
+        <h1>Add an artist</h1>
+        <form action="/addArtist" method="post">
+          <label form="POST-name" type="text" name="Add an Artist!"></label>
+          <input id="POST-name" type="text" name="artist">
+          <input type="submit" value="Add artist!">
+        </form>
+        <h6>Scraping a new artist may take some time, this page will refresh on completion</h6>
+      </div>
+      <div class="col-xs-6 col-md-4"></div>
+    </div>
   </body>
 </html>
