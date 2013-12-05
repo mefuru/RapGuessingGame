@@ -129,7 +129,7 @@ var getData = function(rapperName) {
                         if (numCallbacks == tracks.length) {
                             console.log("Completed");
                             db.close;
-                            process.exit(0);
+                            // have to render homepage
                         }
                     });
                 });

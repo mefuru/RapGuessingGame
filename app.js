@@ -31,7 +31,7 @@ var answers={};
 app.get('/', routes.index);
 app.post('/getArtist', runGame.runGame);
 app.post('/checkAnswer', checkAnswer.checkAnswer);
-// app.post('/addArtist', addArtist.addArtist);
+app.post('/addArtist', addArtist.addArtist);
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
