@@ -1,9 +1,0 @@
-- README
-- Licence
-- Create user accounts
-- Host on Heroku
-- Save questions to a DB
-- Refactor code
-for (var i = 0; i < 4; i++) {
-fourlines.push(docs[0].lyrics[x+i]);
-}
