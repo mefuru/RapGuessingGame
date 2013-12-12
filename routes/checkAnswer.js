@@ -4,13 +4,12 @@ exports.checkAnswer = function(req, res) {
     MongoClient.connect("mongodb://localhost:27017/rapGeniusData", function(err, db) {
         if(err) throw err;
         var answersLog = {};
+        var answerCollection = db.collection("answers");
 
         var answer1 = req.body.songName1;
         var userAnswer1 = answer1.substr(answer1.length - 1);
         var sha1 = answer1.substr(0, answer1.length - 1);
         var query1 = {sha1:sha1};
-        var answerCollection = db.collection("answers");
-        
         
         var answer2 = req.body.songName2;
         var userAnswer2 = answer2.substr(answer2.length - 1);

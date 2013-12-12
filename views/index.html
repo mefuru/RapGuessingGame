@@ -17,10 +17,17 @@
         </form>
         <br>
         <ul class="lead">
-          {% for artist in artists %}
+          {% for artistAndAlbum in artistsAndAlbums %}
           <li{% if loop.first %} class="first"{% endif %}>
-            {{ artist }}
+            {{ artistAndAlbum.artist }}
           </li>
+          <ul>
+            {% for album in artistAndAlbum.albums %}
+            <li{% if loop.first %} class="first"{% endif %}>
+              {{ album }}
+            </li>
+            {% endfor %}
+          </ul>
           {% endfor %}
         </ul>
         <h1>Add an artist</h1>

@@ -54,15 +54,19 @@ var geniusQuery = {
     // pass song object to callback, containing song title, trackNo, lyrics array and songURL
     songData: function(songURL, callback) {
 	    request(songURL, function (error, response, body) {
+                console.log(error);
                 if (error || response.statusCode !== 200) throw "Couldn't get song: " + songURL;
                 var $ = cheerio.load(body);
                 var title = utilsRegex.obtainSongTitle($("h1.song_title a")["0"]["next"]["data"])
                 console.log("Getting song: ", title);
-                var lyricsText = $(".lyrics_container .lyrics p").text();
+                var lyricsText = $(".lyrics_container .lyrics p").text().split("\n");
                 callback(null, {
                     title: title,
                     trackNumber: $(".album_title_and_track_number").text().trim().split(" ")[1],
-                    lyrics: lyricsText.split("\n"),
+                    lyrics: _.filter(lyricsText, function(line) {
+                        if(line.substring(1,5) == "Hook" || line.substring(1,6) == "Verse" || line == "") return false;
+                        return true;
+                    }),
                     URL: songURL
                 });
         });
