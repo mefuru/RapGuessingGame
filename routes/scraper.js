@@ -8,7 +8,6 @@ var MongoClient = require("mongodb").MongoClient,
  _ = require("underscore");
 
 var homeURL = "http://rapgenius.com";
-/* var rapperName = process.argv[2] || "Skinnyman"; removed for module.exports */
 // Process artist page
 var getAlbumsForArtist = function(rapperName, callback) {
     geniusQuery.albumURLs(rapperName, function(error, albumURLs) {

@@ -15,8 +15,7 @@ exports.index = function(req, res) {
         ], function(err, result) {
             var artistsAndAlbums = [];
             for(var i=0; i<result.length; i++) {
-                var artistAndAlbum = {artist: result[i]._id, albums: result[i].albums};
-                artistsAndAlbums.push(artistAndAlbum);
+                artistsAndAlbums.push({artist: result[i]._id, albums: result[i].albums});
             }
             res.render("index", {artistsAndAlbums: artistsAndAlbums});
         });
