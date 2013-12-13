@@ -1,11 +1,16 @@
 {
-    "name": "lyricsGame",
-    "version": "0.0.1",
+    "name": "Rap Genius Scraper and Lyrics Guessing Game",
+    "description": "Rap Genius scraper by artist, storing data from artists' albums as songs in a Mongo DB",
+    "author": "Mehul Mandania (mehul.mandania@gmail.com",
     "dependencies": {
-        "cheerio": "0.12.3",
-        "underscore": "1.4.4",
-        "mongodb": "*",
-        "request": "2.27.0",
-        "async": "0.2.5"
-    }
+        "cheerio": "0.12.x",
+        "underscore": "1.4.x",
+        "mongodb": "1.3.23",
+        "request": "2.27.x",
+        "underscore": "1.5.x",
+        "async": "0.2.x"
+    },
+    "devDependencies": {
+    },
+    "engine": "node >= 0.10.1"
 }

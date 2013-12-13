@@ -1,12 +1,16 @@
-var MongoClient = require("mongodb").MongoClient;
-var async = require("async");
-var __ = require("underscore");
+var MongoClient = require("mongodb").MongoClient,
+ async = require("async"),
+ __ = require("underscore");
 
 exports.checkAnswer = function(req, res) {
     MongoClient.connect("mongodb://localhost:27017/rapGeniusData", function(err, db) {
         if(err) throw err;
         var answerCollection = db.collection("answers");
-        var userInput = [req.body.songName1, req.body.songName2, req.body.songName3, req.body.songName4, req.body.songName5];
+        var userInput = [req.body.songName1,
+                         req.body.songName2,
+                         req.body.songName3,
+                         req.body.songName4,
+                         req.body.songName5];
         var userAnswersAndQueries = [];
         var answersLog = {};
         var numCorrectAnswers = 0;

@@ -10,8 +10,7 @@ exports.runGame = function(req, res) {
         var songs = db.collection("songs");
         var query = {artist: rapperName};
         songs.find({artist: rapperName}, {name: 1, lyrics: 1, _id: 0}).toArray(function(err, docs) {
-
-                        async.parallel([
+            async.parallel([
                 function(parallelCallback) {
                     getFourRandomSongTitles(docs, parallelCallback);
                 },
@@ -27,11 +26,9 @@ exports.runGame = function(req, res) {
                 function(parallelCallback) {
                     getFourRandomSongTitles(docs, parallelCallback);
                 }],
-                           function(err, results) {
-                               saveQuestionsAndRender(results, db, res);
-                               // save the results
-                               // render the five different songs
-                           });
+                function(err, results) {
+                    saveQuestionsAndRender(results, db, res);
+                });
         });
     });
 };
@@ -61,6 +58,8 @@ var getFourRandomLines = function(docs, songNames, arr, parallelCallback) {
     parallelCallback(null, [fourLines, songNames, correctIndex]);
 };
 
+// save the results
+// render the five different songs
 var saveQuestionsAndRender = function(results, db, res) {
     var hexes = [];
     for(var i = 0; i < results.length; i++) {
