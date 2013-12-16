@@ -151,7 +151,7 @@ var getData = function(rapperName, res) {
                         numCallbacks++;
                         if (numCallbacks == tracks.length) {
                             console.log("Songs successfully scraped, now rendering homepage");
-                            renderHomepage(songsCollection, res);
+                            res.send(200);
                         }
                     });
                 });

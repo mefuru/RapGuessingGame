@@ -2,40 +2,47 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/bootstrap.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-  </head>
-  <body>
-    <div class="row">
-      <div class="col-xs-6 col-md-4"></div>
-      <div class="col-xs-6 col-md-4">
-        <h1>Welcome To A Rap Lyrics Guessing Game</h1>
-        <form action="/getArtist" method="post">
-          <label form="POST-name" type="text" name="Enter Artist!"></label>
-          <input id="POST-name" type="text" name="artist">
-          <input type="submit" value="Play!">
-        </form>
-        <br>
-        <ul class="lead">
-          {% for artistAndAlbum in artistsAndAlbums %}
-          <li{% if loop.first %} class="first"{% endif %}>
-            {{ artistAndAlbum.artist }}
-          </li>
-          <ul>
-            {% for album in artistAndAlbum.albums %}
-            <li{% if loop.first %} class="first"{% endif %}>
-              {{ album }}
-            </li>
-            {% endfor %}
-          </ul>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/spin.js"></script>
+<script src="js/jquery.spin.js"></script>
+<script src="js/index.js"></script>
+</head>
+<body>
+<div class="row">
+<div class="col-xs-6 col-md-4"></div>
+<div class="col-xs-6 col-md-4">
+<h1>Welcome To A Rap Lyrics Guessing Game</h1>
+<form action="/getArtist" method="post">
+<br>
+<select id="artist" class="lead" name="artist">
+{% for artistAndAlbum in artistsAndAlbums %}
+<option>
+{{ artistAndAlbum.artist }}
+          </option>
           {% endfor %}
-        </ul>
-        <h1>Add an artist</h1>
-        <form action="/addArtist" method="post">
+          </select>
+          {% for artistAndAlbum in artistsAndAlbums %}
+          {% if loop.first %}
+          <select id="albums" class="lead" name="album">
+           <option>All</option>
+            {% for album in artistAndAlbum.albums %}
+            <option>
+              {{ album }}
+            </option>
+            {% endfor %}
+</select>
+          {% endif %}
+          {% endfor %}
+          <button type="submit">Play!</button>
+       </form>
+<h1>Add an artist</h1>
+        <div>
+          <div id="spinner"></div>
           <label form="POST-name" type="text" name="Add an Artist!"></label>
           <input id="POST-name" type="text" name="artist">
-          <input type="submit" value="Add artist!">
-        </form>
+          <input id="add-artist-btn" type="submit" value="Add artist!">
+        </div>
         <h6>Scraping a new artist may take some time, this page will refresh on completion</h6>
       </div>
       <div class="col-xs-6 col-md-4"></div>

@@ -3,6 +3,7 @@ var routes = require('./routes');
 var runGame = require('./routes/runGame');
 var addArtist = require('./routes/addArtist');
 var checkAnswer = require('./routes/checkAnswer');
+var getAlbums = require('./routes/getAlbums');
 var http = require('http');
 var path = require('path');
 var cons = require('consolidate');
@@ -29,6 +30,7 @@ if ('development' == app.get('env')) {
 }
 var answers={};
 app.get('/', routes.index);
+app.get('/getAlbums', getAlbums.getAlbums);
 app.post('/getArtist', runGame.runGame);
 app.post('/checkAnswer', checkAnswer.checkAnswer);
 app.post('/addArtist', addArtist.addArtist);
