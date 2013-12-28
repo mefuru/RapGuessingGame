@@ -18,8 +18,10 @@ exports.runGame = function(req, res) {
         var query;
         album == "All" ? query = {artist: rapperName} : query = {artist: rapperName, album: album};
         songs.find(query, {name: 1, lyrics: 1, _id: 0}).toArray(function(err, docs) {
-            // if length of array is < 4, render a page informing the player
-            if(docs.length<4) res.render("invalid");
+            if(docs.length<4) {
+                res.render("invalid", {});
+                console.log("Not enough songs to play game");
+            } else {
             async.parallel([
                 function(parallelCallback) {getFourRandomSongTitles(docs, parallelCallback);},
                 function(parallelCallback) {getFourRandomSongTitles(docs, parallelCallback);},
@@ -29,6 +31,7 @@ exports.runGame = function(req, res) {
                 function(err, results) {
                     saveQuestionsAndRender(results, db, res);
                 });
+            }
         });
     });
 };
@@ -74,7 +77,6 @@ var saveQuestionsAndRender = function(results, db, res) {
             if(err) throw err;
         });
     };
-    db.close();
     res.render("game",
                {fourLines1: results[0][0], songNames1: results[0][1], sha1: hexes[0],
                 fourLines2: results[1][0], songNames2: results[1][1], sha2: hexes[1],
