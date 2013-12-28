@@ -131,9 +131,7 @@ var renderHomepage = function(songsCollection, res) {
 };
 
 var getData = function(rapperName, res) {
-    // refactor save code
     getAlbumsForArtist(rapperName, function(error, albums) {
-        // move DB onto mongolabs
         MongoClient.connect('mongodb://localhost:27017/rapGeniusData', function(err, db) {
             if(err) throw err;
             getSongsForAlbums(albums, function(error, songsData) {
@@ -151,7 +149,7 @@ var getData = function(rapperName, res) {
                         numCallbacks++;
                         if (numCallbacks == tracks.length) {
                             console.log("Songs successfully scraped, now rendering homepage");
-                            res.send(200);
+                            res.send(200); // homepage refreshed using client side JS
                         }
                     });
                 });

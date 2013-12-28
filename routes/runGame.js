@@ -5,11 +5,14 @@ var crypto = require("crypto");
 
 exports.runGame = function(req, res) {
     var rapperName = req.body.artist;
+    var album = req.body.album;
+    console.log(album);
     MongoClient.connect("mongodb://localhost:27017/rapGeniusData", function(err, db) {
         if(err) throw err;
         var songs = db.collection("songs");
-        var query = {artist: rapperName};
-        songs.find({artist: rapperName}, {name: 1, lyrics: 1, _id: 0}).toArray(function(err, docs) {
+        var query;
+        album == "All" ? query = {artist: rapperName} : query = {artist: rapperName, album: album};
+        songs.find(query, {name: 1, lyrics: 1, _id: 0}).toArray(function(err, docs) {
             async.parallel([
                 function(parallelCallback) {
                     getFourRandomSongTitles(docs, parallelCallback);
@@ -26,6 +29,7 @@ exports.runGame = function(req, res) {
                 function(parallelCallback) {
                     getFourRandomSongTitles(docs, parallelCallback);
                 }],
+
                 function(err, results) {
                     saveQuestionsAndRender(results, db, res);
                 });
