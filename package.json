@@ -1,5 +1,5 @@
 {
-    "name": "Rap Genius Scraper and Lyrics Guessing Game",
+    "name": "RapGeniusScraperLyricsGuessingGame",
     "description": "Rap Genius scraper by artist, storing data from artists' albums as songs in a Mongo DB",
     "author": "Mehul Mandania (mehul.mandania@gmail.com",
     "dependencies": {
