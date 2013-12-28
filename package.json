@@ -9,7 +9,8 @@
     "request": "2.27.x",
     "async": "0.2.x",
     "express": "~3.4.7",
-    "consolidate": "~0.10.0"
+    "consolidate": "~0.10.0",
+    "swig": "~1.2.2"
   },
   "devDependencies": {},
   "engine": "node >= 0.10.1"
