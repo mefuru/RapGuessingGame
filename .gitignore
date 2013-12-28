@@ -11,6 +11,7 @@ pids
 logs
 results
 
+.env
 keys.js
 npm-debug.log
 node_modules
