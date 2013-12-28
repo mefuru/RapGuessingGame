@@ -7,6 +7,11 @@ var MongoClient = require("mongodb").MongoClient,
  Song = require("./modules/songs"),
  _ = require("underscore");
 
+var dataBaseKeys = require("../keys");
+var DBUserName = dataBaseKeys.DATABASE_USER;
+var DBPassword = dataBaseKeys.DATABASE_PWD;
+var DBURL = "mongodb://"+DBUserName+":"+DBPassword+"@ds061188.mongolab.com:61188/heroku_app20763382";
+
 var homeURL = "http://rapgenius.com";
 // Process artist page
 var getAlbumsForArtist = function(rapperName, callback) {
@@ -132,7 +137,7 @@ var renderHomepage = function(songsCollection, res) {
 
 var getData = function(rapperName, res) {
     getAlbumsForArtist(rapperName, function(error, albums) {
-        MongoClient.connect('mongodb://localhost:27017/rapGeniusData', function(err, db) {
+        MongoClient.connect(DBURL, function(err, db) {
             if(err) throw err;
             getSongsForAlbums(albums, function(error, songsData) {
                 var tracks = _.map(_.flatten(songsData), songDataToTrack);
