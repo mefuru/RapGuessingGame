@@ -118,12 +118,8 @@ var songDataToTrack = function(songData) {
 
 var renderHomepage = function(songsCollection, res) {
     songsCollection.aggregate([
-        {$group:
-         { _id: "$artist" }
-        },
-        {$sort:
-         {_id: 1}
-        }
+        {$group: { _id: "$artist"}},
+        {$sort: {_id: 1}}
     ], function(err, result) {
         var artists = [];
         result.forEach (function(elem, index, array) {
