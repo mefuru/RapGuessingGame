@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/bootstrap.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/spin.js"></script>
-<script src="js/jquery.spin.js"></script>
-<script src="js/index.js"></script>
-</head>
-<body>
-<div class="row">
-<div class="col-xs-6 col-md-4"></div>
-<div class="col-xs-6 col-md-4">
-<h1>Welcome To A Rap Lyrics Guessing Game</h1>
-<form action="/getArtist" method="post">
-<br>
-<select id="artist" class="lead" name="artist">
-{% for artistAndAlbum in artistsAndAlbums %}
-<option>
-{{ artistAndAlbum.artist }}
-          </option>
-          {% endfor %}
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/spin.js"></script>
+    <script src="js/jquery.spin.js"></script>
+    <script src="js/index.js"></script>
+  </head>
+  <body>
+    <div class="row">
+      <div class="col-xs-6 col-md-4"></div>
+      <div class="col-xs-6 col-md-4">
+        <h1>How well do you know your favourite rapper's lyrics?</h1>
+        <h5>"The dumb are mostly intrigued by the drum" - Wu-tang</h5>
+        <form action="/getArtist" method="post">
+          <br>
+          <select id="artist" class="lead" name="artist">
+            {% for artistAndAlbum in artistsAndAlbums %}
+            <option>
+              {{ artistAndAlbum.artist }}
+</br>
+            </option>
+            {% endfor %}
           </select>
           {% for artistAndAlbum in artistsAndAlbums %}
           {% if loop.first %}
           <select id="albums" class="lead" name="album">
-           <option>All</option>
+            <option>All</option>
             {% for album in artistAndAlbum.albums %}
             <option>
               {{ album }}
             </option>
             {% endfor %}
-</select>
+          </select>
           {% endif %}
           {% endfor %}
           <button type="submit">Play!</button>
-       </form>
-<h1>Add an artist</h1>
+        </form>
+        <h1>Add an artist</h1>
         <div>
           <div id="spinner"></div>
           <label form="POST-name" type="text" name="Add an Artist!"></label>
