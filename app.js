@@ -7,17 +7,39 @@ var getAlbums = require('./routes/getAlbums');
 var http = require('http');
 var path = require('path');
 var cons = require('consolidate');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+var mongoose = require('mongoose');
 
 var app = express();
+
+// var config = require('./config');
+// var User = require('../models/user');
+
+// passport.use(new FacebookStrategy({
+//     clientID: config.development.fb.appID,
+//     clientSecret: config.development.fb.appSecret,
+//     callbackURL: config.development.fb.url = 'fbauthed'
+// }, function(accessToken, refreshToken, profile, done) {
+//     process.nextTick(function() {
+        
+//     });
+// }
+
 
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 app.engine('html', cons.swig);
+app.use(express.cookieParser());
+app.use(express.session({secret:"SECRETSECRET"}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.bodyParser());
-app.use(express.logger('dev'));
-app.use(express.json());
+app.use(express.logger('app'));
+// use.devlalo(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
