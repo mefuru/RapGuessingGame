@@ -19,8 +19,6 @@ app.set('view engine', 'html');
 app.engine('html', cons.swig);
 app.use(express.cookieParser());
 app.use(express.session({secret:"SECRETSECRET"}));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(express.bodyParser());
 app.use(express.logger('app'));
 app.use(express.urlencoded());
