@@ -12,6 +12,7 @@ logs
 results
 
 .env
+config.js
 keys.js
 npm-debug.log
 node_modules

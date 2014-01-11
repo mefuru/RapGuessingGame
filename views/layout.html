@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/spin.js"></script>
+    <script src="js/jquery.spin.js"></script>
+    <script src="js/index.js"></script>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Rap lyrics guessing game</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            {% block navbar %}
+            {% endblock %}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class=" headerwrap container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4">
+        </div>
+          {% block content %}{% endblock %}
+        <div class="col-xs-6 col-md-4"></div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" href="css/bootstrap.css">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/spin.js"></script>
-<script src="js/jquery.spin.js"></script>
-</head>
-<body>
-    <div class="row">
-      <div class="col-xs-6 col-md-4"></div>
-      <div class="col-xs-6 col-md-4">
-        <p>Not enough songs available for this artist and album selection</p>
-      </div>
-      <div class="col-xs-6 col-md-4"></div>
-  </body>
-</html>
+{% extends '../views/layout.html' %}
+
+{% block navbar %}
+<li><a href="/">HOME</a></li>
+<li><a href="/about">ABOUT</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="col-xs-6 col-md-4">
+  </br></br>
+  <p>Not enough songs available for this artist and album selection</p>
+  <a href="http://localhost:5000/">Play again and choose another artist </a>
+</div>
+{% endblock %}

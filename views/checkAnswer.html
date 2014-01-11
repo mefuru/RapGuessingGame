@@ -1,55 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" href="css/bootstrap.css">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/spin.js"></script>
-<script src="js/jquery.spin.js"></script>
-</head>
-<body>
-<div class="row">
-<div class="col-xs-6 col-md-4"></div>
+{% extends '../views/layout.html' %}
+
+{% block navbar %}
+<li><a href="/">HOME</a></li>
+<li><a href="/about">ABOUT</a></li>
+{% endblock %}
+
+{% block content %}
 <div class="col-xs-6 col-md-4">
-<h1>Your results!</h1>
-<h2>You got {{correctAnswers}} correct!<h2>
-<p>You got question one {{results[0]}}</p>
-<p>You got question two {{results[1]}}</p>
-<p>You got question three {{results[2]}}</p>
-<p>You got question four {{results[3]}}</p>
-<p>You got question five {{results[4]}}</p>
-<p id="attempted">[session score]<p>
-<p id="correct">[session score]<p>
-<p id="percentage">[session score]<p>
-<button id="clearScores">Clear saved results!</button>
-<a href="http://localhost:5000/"> Play again </a>
+  <h1>Your results!</h1>
+  <h2>You got {{correctAnswers}} correct!<h2>
+      <p>You got question one {{results[0]}}</p>
+      <p>You got question two {{results[1]}}</p>
+      <p>You got question three {{results[2]}}</p>
+      <p>You got question four {{results[3]}}</p>
+      <p>You got question five {{results[4]}}</p>
+      <p id="attempted">[session score]<p>
+      <p id="correct">[session score]<p>
+      <p id="percentage">[session score]<p>
+        <button id="clearScores">Clear saved results!</button>
+        <a href="http://localhost:5000/"> Play again </a>
 </div>
 <div class="col-xs-6 col-md-4"></div>
 <script>
-$(function() {
-if(localStorage.getItem("attempted")) {
-localStorage.setItem("attempted", parseInt(localStorage.getItem("attempted"))+5);
-$('#attempted').html("You have attempted " + localStorage.getItem("attempted") + " questions");
-} else {
-localStorage.setItem("attempted", 5);
-$('#attempted').html("You have attempted " + localStorage.getItem("attempted") + " questions");
-}
-if(localStorage.getItem("correct")) {
+  $(function() {
+  if(localStorage.getItem("attempted")) {
+  localStorage.setItem("attempted", parseInt(localStorage.getItem("attempted"))+5);
+  $('#attempted').html("You have attempted " + localStorage.getItem("attempted") + " questions");
+  } else {
+  localStorage.setItem("attempted", 5);
+  $('#attempted').html("You have attempted " + localStorage.getItem("attempted") + " questions");
+  }
+  if(localStorage.getItem("correct")) {
   localStorage.setItem("correct", parseInt(localStorage.getItem("correct"))+ {{correctAnswers}} );
   $('#correct').html("You have " + localStorage.getItem("correct") + " correct answers");
   } else {
   localStorage.setItem("correct", {{correctAnswers}});
   $('#correct').html("You have " + localStorage.getItem("correct") + " correct answers");
   }
-if(localStorage.getItem("attempted") && localStorage.getItem("correct")) {
+  if(localStorage.getItem("attempted") && localStorage.getItem("correct")) {
   localStorage.setItem("percentage", parseInt(localStorage.getItem("correct"))/parseInt(localStorage.getItem("attempted"))*100 );
   $('#percentage').html("You have " + localStorage.getItem("percentage") + "% correct answers");
   }
-$('#clearScores').click(function() {
-console.log('hello');
-localStorage.clear();
-});
+  $('#clearScores').click(function() {
+  console.log('hello');
+  localStorage.clear();
+  });
   });
 </script>
-</body>
-</html>
+{% endblock %}
