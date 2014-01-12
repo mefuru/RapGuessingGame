@@ -10,6 +10,7 @@
   <h1>"The dumb are mostly intrigued by the drum" - Wu-tang</h1>
   <form action="/getArtist" method="post">
     </br>
+    <h5>Artist</h5>
     <select id="artist" class="lead" name="artist">
       {% for artistAndAlbum in artistsAndAlbums %}
       <option>
@@ -18,6 +19,7 @@
       </option>
       {% endfor %}
     </select>
+    <h5>Albums</h5>
     {% for artistAndAlbum in artistsAndAlbums %}
     {% if loop.first %}
     <select id="albums" class="lead" name="album">

@@ -18,7 +18,7 @@ exports.runGame = function(req, res) {
         var query;
         album == "All" ? query = {artist: rapperName} : query = {artist: rapperName, album: album};
         songs.find(query, {name: 1, lyrics: 1, _id: 0}).toArray(function(err, docs) {
-            if(docs.length<4) {
+            if(docs == null || docs.length<4) {
                 res.render("invalid", {});
                 console.log("Not enough songs to play game");
             } else {

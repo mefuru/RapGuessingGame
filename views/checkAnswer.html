@@ -3,48 +3,49 @@
 {% block navbar %}
 <li><a href="/">HOME</a></li>
 <li><a href="/about">ABOUT</a></li>
+<li class="active">RESULTS</a></li>
 {% endblock %}
 
 {% block content %}
 <div class="col-xs-12 col-md-8">
-  <h1>Your results!</h1>
   <h2>You got {{correctAnswers}} correct!<h2>
-      <p>You got question one {{results[0]}}</p>
-      <p>You got question two {{results[1]}}</p>
-      <p>You got question three {{results[2]}}</p>
-      <p>You got question four {{results[3]}}</p>
-      <p>You got question five {{results[4]}}</p>
-      <p id="attempted">[session score]<p>
-      <p id="correct">[session score]<p>
-      <p id="percentage">[session score]<p>
-        <button id="clearScores">Clear saved results!</button>
-        <a href="/"> Play again </a>
+  <p>Question one: {{results[0]}}</p>
+  <p>Question two: {{results[1]}}</p>
+  <p>Question three: {{results[2]}}</p>
+  <p>Question four: {{results[3]}}</p>
+  <p>Question five: {{results[4]}}</p>
+  <p id="attempted">[session score]<p>
+  <p id="correct">[session score]<p>
+  <p id="percentage">[session score]<p>
+  </br>
+  <button id="clearScores">Clear saved results!</button>
+  </br>
+  <a href="/"> Play again </a>
 </div>
 <script>
     $(function() {
-        console.log('this working');
-        if(localStorage.getItem("attempted")) {
-            localStorage.setItem("attempted", parseInt(localStorage.getItem("attempted"))+5);
-            $('#attempted').html("You have attempted " + localStorage.getItem("attempted") + " questions");
-        } else {
-            localStorage.setItem("attempted", 5);
-            $('#attempted').html("You have attempted " + localStorage.getItem("attempted") + " questions");
-        }
-        if(localStorage.getItem("correct")) {
-            localStorage.setItem("correct", parseInt(localStorage.getItem("correct"))+ {{correctAnswers}} );
-            $('#correct').html("You have " + localStorage.getItem("correct") + " correct answers");
-        } else {
-            localStorage.setItem("correct", {{correctAnswers}});
-            $('#correct').html("You have " + localStorage.getItem("correct") + " correct answers");
-        }
-        if(localStorage.getItem("attempted") && localStorage.getItem("correct")) {
-            localStorage.setItem("percentage", parseInt(localStorage.getItem("correct"))/parseInt(localStorage.getItem("attempted"))*100 );
-            $('#percentage').html("You have " + localStorage.getItem("percentage") + "% correct answers");
-        }
-        $('#clearScores').click(function() {
-            console.log('hello');
-            localStorage.clear();
-        });
-    });
+          if(localStorage.getItem("attempted")) {
+                localStorage.setItem("attempted", parseInt(localStorage.getItem("attempted"))+5);
+                $('#attempted').html("You have attempted " + localStorage.getItem("attempted") + " questions");
+                } else {
+                      localStorage.setItem("attempted", 5);
+                      $('#attempted').html("You have attempted " + localStorage.getItem("attempted") + " questions");
+                      }
+          if(localStorage.getItem("correct")) {
+                localStorage.setItem("correct", parseInt(localStorage.getItem("correct"))+ {{correctAnswers}} );
+                $('#correct').html("You have " + localStorage.getItem("correct") + " correct answers");
+                } else {
+                      localStorage.setItem("correct", {{correctAnswers}});
+                      $('#correct').html("You have " + localStorage.getItem("correct") + " correct answers");
+                      }
+          if(localStorage.getItem("attempted") && localStorage.getItem("correct")) {
+                localStorage.setItem("percentage", parseInt(localStorage.getItem("correct"))/parseInt(localStorage.getItem("attempted"))*100 );
+                $('#percentage').html("You have " + localStorage.getItem("percentage") + "% correct answers");
+                }
+          $('#clearScores').click(function() {
+                console.log('hello');
+                localStorage.clear();
+                });
+          });
 </script>
 {% endblock %}
