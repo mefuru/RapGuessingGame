@@ -6,15 +6,15 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-xs-6 col-md-4">
+<div class="col-xs-12 col-md-8">
   <h1>"The dumb are mostly intrigued by the drum" - Wu-tang</h1>
   <form action="/getArtist" method="post">
-    <br>
+    </br>
     <select id="artist" class="lead" name="artist">
       {% for artistAndAlbum in artistsAndAlbums %}
       <option>
         {{ artistAndAlbum.artist }}
-</br>
+        </br>
       </option>
       {% endfor %}
     </select>
@@ -30,9 +30,10 @@
     </select>
     {% endif %}
     {% endfor %}
+    </br>
     <button type="submit">Play!</button>
   </form>
-  <h1>Add an artist</h1>
+  <h3>Can't find the rapper you're looking for? Then add one!</h3>
   <div>
     <div id="spinner"></div>
     <label form="POST-name" type="text" name="Add an Artist!"></label>
