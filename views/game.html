@@ -8,7 +8,7 @@
 {% block content %}
 <div class="col-xs-12 col-md-8">
   <form name="input" action="/checkAnswer" method="post">
-    <h1>Question 1</h1>
+    <h3>Question 1</h3>
     <h4 class="text-info"> {{ fourLines1[0] }} </h4>
     <h4 class="text-info"> {{ fourLines1[1] }} </h4>
     <h4 class="text-info"> {{ fourLines1[2] }} </h4>
@@ -17,7 +17,7 @@
     <input type="radio" name="songName1" value={{sha1}}1>{{songNames1[1]}}<br><br>
     <input type="radio" name="songName1" value={{sha1}}2>{{songNames1[2]}}<br><br>
     <input type="radio" name="songName1" value={{sha1}}3>{{songNames1[3]}}<br><br>
-    <h1>Question 2</h1>
+    <h3>Question 2</h3>
     <h4 class="text-info"> {{ fourLines2[0] }} </h4>
     <h4 class="text-info"> {{ fourLines2[1] }} </h4>
     <h4 class="text-info"> {{ fourLines2[2] }} </h4>
@@ -26,7 +26,7 @@
     <input type="radio" name="songName2" value={{sha2}}1>{{songNames2[1]}}<br><br>
     <input type="radio" name="songName2" value={{sha2}}2>{{songNames2[2]}}<br><br>
     <input type="radio" name="songName2" value={{sha2}}3>{{songNames2[3]}}<br><br>
-    <h1>Question 3</h1>
+    <h3>Question 3</h3>
     <h4 class="text-info"> {{ fourLines3[0] }} </h4>
     <h4 class="text-info"> {{ fourLines3[1] }} </h4>
     <h4 class="text-info"> {{ fourLines3[2] }} </h4>
@@ -35,7 +35,7 @@
     <input type="radio" name="songName3" value={{sha3}}1>{{songNames3[1]}}<br><br>
     <input type="radio" name="songName3" value={{sha3}}2>{{songNames3[2]}}<br><br>
     <input type="radio" name="songName3" value={{sha3}}3>{{songNames3[3]}}<br><br>
-    <h1>Question 4</h1>
+    <h3>Question 4</h3>
     <h4 class="text-info"> {{ fourLines4[0] }} </h4>
     <h4 class="text-info"> {{ fourLines4[1] }} </h4>
     <h4 class="text-info"> {{ fourLines4[2] }} </h4>
@@ -44,16 +44,19 @@
     <input type="radio" name="songName4" value={{sha4}}1>{{songNames4[1]}}<br><br>
     <input type="radio" name="songName4" value={{sha4}}2>{{songNames4[2]}}<br><br>
     <input type="radio" name="songName4" value={{sha4}}3>{{songNames4[3]}}<br><br>
-    <h1>Question 5</h1>
+    <h3>Question 5</h3>
     <h4 class="text-info"> {{ fourLines5[0] }} </h4>
     <h4 class="text-info"> {{ fourLines5[1] }} </h4>
     <h4 class="text-info"> {{ fourLines5[2] }} </h4>
     <h4 class="text-info"> {{ fourLines5[3] }} </h4>
+    </br>
+    
     <input type="radio" name="songName5" value={{sha5}}0>{{songNames5[0]}}<br><br>
     <input type="radio" name="songName5" value={{sha5}}1>{{songNames5[1]}}<br><br>
     <input type="radio" name="songName5" value={{sha5}}2>{{songNames5[2]}}<br><br>
     <input type="radio" name="songName5" value={{sha5}}3>{{songNames5[3]}}<br><br>
     <input type="submit" value="Submit">
+    <p>Make sure you've answered ALL questions</p>
   </form>
 </br></br>
 </div>

@@ -30,13 +30,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
-var answers={};
+
 app.get('/', routes.index);
 app.get('/about', about.about);
 app.get('/getAlbums', getAlbums.getAlbums);
 app.post('/getArtist', runGame.runGame);
 app.post('/checkAnswer', checkAnswer.checkAnswer);
 app.post('/addArtist', addArtist.addArtist);
+
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
