@@ -3,24 +3,25 @@
 {% block navbar %}
 <li><a href="/">HOME</a></li>
 <li><a href="/about">ABOUT</a></li>
-<li class="active">RESULTS</a></li>
+<li><a href='#'>RESULTS</a></li>
 {% endblock %}
 
 {% block content %}
 <div class="col-xs-12 col-md-8">
-  <h2>You got {{correctAnswers}} correct!<h2>
+  <h2>You guessed {{correctAnswers}} out of 5 lyrics correctly</h2>
   <p>Question one: {{results[0]}}</p>
   <p>Question two: {{results[1]}}</p>
   <p>Question three: {{results[2]}}</p>
   <p>Question four: {{results[3]}}</p>
   <p>Question five: {{results[4]}}</p>
+  <h3>Totals so far</h3>
   <p id="attempted">[session score]<p>
   <p id="correct">[session score]<p>
   <p id="percentage">[session score]<p>
   </br>
-  <button id="clearScores">Clear saved results!</button>
+  <button id="clearScores">Clear totals</button>
   </br>
-  <a href="/"> Play again </a>
+  <a href="/">Play again</a>
 </div>
 <script>
     $(function() {
