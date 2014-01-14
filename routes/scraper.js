@@ -127,8 +127,6 @@ var renderHomepage = function(songsCollection, res) {
         });
         res.render("index", {artists: artists});
     });
-
-
 };
 
 var getData = function(rapperName, res) {
